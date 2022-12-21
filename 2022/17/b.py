@@ -36,7 +36,7 @@ class Rock():
 				return True
 		return False
 	
-with open("input", "r") as file:
+with open("input2", "r") as file:
 	ins = list(file.readline().rstrip())
 
 rock_ctr = 1
@@ -45,12 +45,12 @@ max_h = 0
 rock = Rock(rock_ctr, max_h)
 board = [['#' for _ in range(7)]] # floor
 board.extend([['.' for _ in range(7)] for _ in range(4)]) # prep board
-important = {2:[]} | {i:[] for i in range(3, len(ins)) if min([i % k for k in range(2, i)]) != 0}
+important = {i:[] for i in range(2, len(ins))}
 period = 0
 accumulate = False
 accumulate_upto = len(ins) * 5 * 1000
 up_to = []
-while rock_ctr <= (10000*5):
+while rock_ctr <= (10000*5*10):
 	rock.move(ins[ins_ptr], board)
 	if rock.move('d', board):
 		for coord in rock.coords:
@@ -64,9 +64,14 @@ while rock_ctr <= (10000*5):
 			for key in important:
 				if (rock_ctr % (5*key)) == 1:
 					important[key].append(max_h)
-					if len(important[key]) >= 4:
-						if ((important[key][1] - important[key][0] == important[key][2] - important[key][1]) and
-							important[key][2] - important[key][1] == important[key][3] - important[key][2]):
+					if len(important[key]) >= 5:
+						valid = True
+						diff = important[key][1] - important[key][0]
+						for i in range(len(important[key])-1):
+							if important[key][i+1] - important[key][i] != diff:
+								valid = False
+								break
+						if valid:
 							period = key
 							accumulate = True
 							accumulate_upto = rock_ctr + 5*key
@@ -79,6 +84,8 @@ while rock_ctr <= (10000*5):
 	ins_ptr += 1
 	ins_ptr %= len(ins)
 
+print(period)
+print(important[period])
 diff = important[period][1] - important[period][0]
 cycles = (1000000000000 // (5*period)) - 1
 left = 1000000000000 % (5*period)
