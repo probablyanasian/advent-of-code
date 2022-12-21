@@ -164,4 +164,4 @@ cython_debug/
 
 !tinput
 outf*
-/**/[d-z].py
+/**/test.py
