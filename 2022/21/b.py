@@ -68,23 +68,19 @@ checkval = monkeydict[root_monkey.r].value if humn == rootl else monkeydict[root
 
 while humn != 'humn':
 	humn = humn[1:-1] # unwrap one layer of parens
-	i = 0
+	i = -1
 	op = ''
 	while op == '':
+		i += 1
 		if humn[i] in {'+', '-', '*', '/'}:
 			op = humn[i]
-			break
 		elif humn[i] == '(': # ltr guarantees lparen
 			break
-		i += 1
-	i = -1 if not op else i
+	i = 0 if not op else i
 	while op == '':
+		i -= 1
 		if humn[i] in {'+', '-', '*', '/'}:
 			op = humn[i]
-			break
-		elif humn[i] == '>': # ltr guarantees lparen
-			break
-		i -= 1
 	humnl = humn[:i]
 	humnr = humn[i+1:]
 	humn = humnl if 'humn' in humnl else humnr
