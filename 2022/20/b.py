@@ -23,7 +23,6 @@ for _ in range(10):
 		assert item == n
 		enc.insert((n_ind + n.value) % len(enc), n)
 
-print(enc)
 zero_ind = enc.index(zero_node)
 
 sum = 0
