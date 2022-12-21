@@ -38,28 +38,28 @@ while not root_monkey.hasval:
 				if monkey.name == 'root':
 					monkey.valstr = f'{monkeydict[monkey.l].valstr} == {monkeydict[monkey.r].valstr}'
 				elif monkey.op == '+':
-					monkey.value = monkeydict[monkey.l].value + monkeydict[monkey.r].value
 					if 'humn' in monkeydict[monkey.l].valstr or 'humn' in monkeydict[monkey.r].valstr:
 						monkey.valstr = f'({monkeydict[monkey.l].valstr}+{monkeydict[monkey.r].valstr})'
 					else:
+						monkey.value = monkeydict[monkey.l].value + monkeydict[monkey.r].value
 						monkey.valstr = str(monkey.value)
 				elif monkey.op == '-':
-					monkey.value = monkeydict[monkey.l].value - monkeydict[monkey.r].value
 					if 'humn' in monkeydict[monkey.l].valstr or 'humn' in monkeydict[monkey.r].valstr:
 						monkey.valstr = f'({monkeydict[monkey.l].valstr}-{monkeydict[monkey.r].valstr})'
 					else:
+						monkey.value = monkeydict[monkey.l].value - monkeydict[monkey.r].value
 						monkey.valstr = str(monkey.value)
 				elif monkey.op == '*':
-					monkey.value = monkeydict[monkey.l].value * monkeydict[monkey.r].value
 					if 'humn' in monkeydict[monkey.l].valstr or 'humn' in monkeydict[monkey.r].valstr:
 						monkey.valstr = f'({monkeydict[monkey.l].valstr}*{monkeydict[monkey.r].valstr})'
 					else:
+						monkey.value = monkeydict[monkey.l].value * monkeydict[monkey.r].value
 						monkey.valstr = str(monkey.value)
 				elif monkey.op == '/':
-					monkey.value = monkeydict[monkey.l].value / monkeydict[monkey.r].value
 					if 'humn' in monkeydict[monkey.l].valstr or 'humn' in monkeydict[monkey.r].valstr:
 						monkey.valstr = f'({monkeydict[monkey.l].valstr}/{monkeydict[monkey.r].valstr})'
 					else:
+						monkey.value = monkeydict[monkey.l].value / monkeydict[monkey.r].value
 						monkey.valstr = str(monkey.value)
 
 rootl, rootr = root_monkey.valstr.split(' == ')
