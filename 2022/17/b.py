@@ -45,7 +45,7 @@ max_h = 0
 rock = Rock(rock_ctr, max_h)
 board = [['#' for _ in range(7)]] # floor
 board.extend([['.' for _ in range(7)] for _ in range(4)]) # prep board
-important = {i:[] for i in range(1, len(ins))}
+important = {2:[]} | {i:[] for i in range(3, len(ins)) if min([i % k for k in range(2, i)]) != 0}
 period = 0
 accumulate = False
 accumulate_upto = len(ins) * 5 * 1000
